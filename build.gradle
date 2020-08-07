@@ -1,3 +1,9 @@
+buildscript {
+	ext {
+		logbackAccessVersion='2.7.1'
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.3.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -6,7 +12,7 @@ plugins {
 
 group = 'com.b1a9idps'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = JavaVersion.VERSION_14
 
 configurations {
 	compileOnly {
@@ -23,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "net.rakugakibox.spring.boot:logback-access-spring-boot-starter:${logbackAccessVersion}"
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
