@@ -1,18 +1,19 @@
 buildscript {
 	ext {
-		logbackAccessVersion='2.7.1'
+		logbackAccessVersion='3.4.5'
 	}
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.3.2.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
 }
 
 group = 'com.b1a9idps'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_14
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 configurations {
 	compileOnly {
@@ -29,14 +30,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation "net.rakugakibox.spring.boot:logback-access-spring-boot-starter:${logbackAccessVersion}"
+	implementation "dev.akkinoc.spring.boot:logback-access-spring-boot-starter:${logbackAccessVersion}"
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+wrapper {
+	gradleVersion = "8.0.2"
+	distributionType = Wrapper.DistributionType.ALL
 }
